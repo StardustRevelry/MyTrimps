@@ -70,16 +70,17 @@ function translate() {
           });
         }
         else if (method ==='re') {
-          console.log(key)
+          // console.log(key)
           element.textContent = element.textContent.replace(new RegExp(i18n_data[key][0], 'g'), i18n_data[key][1]);
           if (i18n_inited) continue;
           ob = new MutationObserver(function (mutations) {
             // 获取新的文本
             const node = mutations[0].addedNodes[0];
             const newText = node?.textContent;
-            const key = node.parentNode.getAttribute("data-i18n").split(":")[0];
+            const key = node.parentNode?.getAttribute("data-i18n").split(":")[0];
             // 替换文本
-            node.textContent = newText.replace(new RegExp(i18n_data[key][0], 'g'), i18n_data[key][1])
+            if (i18n_data[key] instanceof Array)
+              node.textContent = newText.replace(new RegExp(i18n_data[key][0], 'g'), i18n_data[key][1])
           });
           ob.observe(element, {
             attributes: false,

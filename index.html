@@ -31,24 +31,25 @@
 		<http://www.gnu.org/licenses/>. -->
 <body onblur="gameUnfocused()">
 	<noscript>
-	<div id="checkJavascript" style="position: absolute; height: 100%; width: 100%; font-size: 2vw; padding: 10%; color: white; background-color: black; z-index: 1000000;">
+	<div id="checkJavascript" style="position: absolute; height: 100%; width: 100%; font-size: 2vw; padding: 10%; color: white; background-color: black; z-index: 1000000;"
+		data-i18n="checkJavascript">
 		For some reason, your browser is having trouble loading this game. This game runs on javascript, and if you have an addon such as noscript, you may need to tell it to allow scripts from http://trimps.github.io, which is where this game is hosted.<br/><br/>
 		If you are not using any addons that might interfere with javascript, try using the latest versions of Chrome or Firefox. 
 	</div>
 	</noscript>
 	<div id="offlineWrapper">
 		<div id="offlineInnerWrapper">
-			<div id="offlineTitle">
+			<div id="offlineTitle" data-i18n="offline.title">
 				Making up lost time...
 			</div>
 			<div id="offlineProgressWrapper" class='progress'>
-				<span id='offlineProgressText'>Starting...</span>
+				<span id='offlineProgressText' data-i18n="offline.progressText">Starting...</span>
 				<div class="progress-bar" role="progressbar" id="offlineProgress">&nbsp;</div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-3'>
-					<div id='offlineZoneNumber'>Zone</div>
-					<div id='offlineCellNumber'>Cell </div>
+					<div id='offlineZoneNumber' data-i18n="offline.zone:re">Zone</div>
+					<div id='offlineCellNumber' data-i18n="offline.cell:re">Cell </div>
 				</div>
 				<div class='col-xs-9'>
 					<div id='offlineExtraInfo'></div>
@@ -56,7 +57,7 @@
 			</div>
 			<div class='row'>
 				<div id='offlineMapBtns' class='col-xs-6'>
-					<div id='offlineMapText' style='text-align: center;'>Wanna run a map?</div>
+					<div id='offlineMapText' style='text-align: center;' data-i18n="offline.map">Wanna run a map?</div>
 					<div id='offlineMapBtnsInner'>
 						<span id="offlineMapBtn0" class="offlineMapBtn btn btn-md btn-success" onclick="offlineProgress.runFirstMap(0);">World Level Map</span>
 						<span id="offlineMapBtn1" class="offlineMapBtn btn btn-md btn-success" onclick="offlineProgress.runFirstMap(-1);">-1 Level map</span>
@@ -66,14 +67,14 @@
 				</div>
 				<div id='offlineZoneBtns' class='col-xs-6'>
 					<div id='offlineInMapDescription' style='text-align: center;'></div>
-					<span id='offlineZoneBtn' onclick="offlineProgress.leaveMap();" class="offlineExtraBtn btn btn-md btn-primary">Back to World</span>
+					<span id='offlineZoneBtn' onclick="offlineProgress.leaveMap();" class="offlineExtraBtn btn btn-md btn-primary" data-i18n="offline.leaveMap">Back to World</span>
 				</div>
 				<div id='offlineExtraBtnsContainer' class='col-xs-6' style='position: absolute; left: 50%; width: 25%;'>
 					<div id='offlineTimeOffline'></div>
-					<div class='btn btn-lg btn-info offlineExtraBtn' onclick="tooltip('Lost Time', null, 'update');">What is This?!</div>
-					<div class='btn btn-lg btn-danger offlineExtraBtn' onclick='offlineProgress.finish()'>Stop Here</div>
-					<div class='btn btn-lg btn-warning offlineExtraBtn' id='offlineEqualityBtn' onclick='offlineProgress.showEquality()'>Show Equality</div>
-					<div class='btn btn-lg btn-primary offlineExtraBtn' id='offlineFightBtn' onclick='offlineProgress.fightClicked()'>Start Fighting</div>
+					<div class='btn btn-lg btn-info offlineExtraBtn' onclick="tooltip('Lost Time', null, 'update');" data-i18n="offline.tooltip">What is This?!</div>
+					<div class='btn btn-lg btn-danger offlineExtraBtn' onclick='offlineProgress.finish()' data-i18n="offline.finish">Stop Here</div>
+					<div class='btn btn-lg btn-warning offlineExtraBtn' id='offlineEqualityBtn' onclick='offlineProgress.showEquality()' data-i18n="offline.showEq">Show Equality</div>
+					<div class='btn btn-lg btn-primary offlineExtraBtn' id='offlineFightBtn' onclick='offlineProgress.fightClicked()'> </div>
 					<div id='offlineFormations'></div>
 					<div id='offlineSettingContainer'></div>
 					<div id='offlineEffective'></div>
@@ -88,20 +89,20 @@
 				<div class="col-xs-2">			
 				</div>
 				<div class="col-xs-8">
-					<div id="boneTitleContainer">
+					<div id="boneTitleContainer" data-i18n="bone.title">
 						Bone Trader
 					</div>
-					<div id="boneOwnedContainer">
+					<div id="boneOwnedContainer" data-i18n="bone.count">
 						You have <span id="bonesOwned">0</span>
 					</div>
-					<span id="bonesFrom">You can earn bones as you progress through the world by killing Skeletimps and Megaskeletimps.</span>
+					<span id="bonesFrom" data-i18n="bone.from">You can earn bones as you progress through the world by killing Skeletimps and Megaskeletimps.</span>
 					<br/>
-					<div id="boneFlavorRow">
+					<div id="boneFlavorRow" data-i18n="bone.flavor">
 						The Bone Trader trades bones for... bonuses
 					</div>
 				</div>
 				<div class="col-xs-2">
-					<div class="boneBtn dangerColor pointer noselect" onclick="hideBones()">
+					<div class="boneBtn dangerColor pointer noselect" onclick="hideBones()" data-i18n="close">
 						Close
 					</div>
 				</div>
@@ -168,7 +169,7 @@
 					<div class="col-xs-6 maxH">
 						<div id="food" class="playerGather">
 							<div id="boneShrineBtn" style="display: none" class="isEmpty noselect" onmouseover="tooltip('Bone Shrine', null, event)" onclick="game.permaBoneBonuses.boosts.consume()" onmouseout="tooltip('hide')"></div>
-							<span class="title">Food</span>
+							<span class="title" data-i18n="food.title">Food</span>
 							<br/>
 							<span class="ownedArea bdHover" onclick="getMaxResources('Food')"><span id="foodOwned">0</span> / <span id="foodMax"></span></span>
 							<br/>
@@ -179,10 +180,10 @@
 							</div>
 							<div class="row collectRow">
 								<div class="col-xs-6">
-									<div id="foodCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('food')">Gather</div>
+									<div id="foodCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('food')" data-i18n="food.gather:multi">Gather</div>
 								</div>
 								<div class="col-xs-6">
-									<span class="psText sizeSecRegular pointer noselect" id="foodPs" onclick="getPsString('food')">+0/sec</span>
+									<span class="psText sizeSecRegular pointer noselect" id="foodPs" onclick="getPsString('food')" data-i18n="re.somethingPs:re">+0/sec</span>
 								</div>
 							</div>
 						</div>
@@ -190,7 +191,7 @@
 
 					<div class="col-xs-6 maxH">
 						<div id="wood" class="playerGather" style="visibility: hidden;">
-							<span class="title">Wood</span>
+							<span class="title" data-i18n="wood.title">Wood</span>
 							<br/>
 							<span class="ownedArea bdHover" onclick="getMaxResources('Wood')"><span id="woodOwned">0</span> / <span id="woodMax"></span></span>
 							<br/>
@@ -202,10 +203,10 @@
 
 							<div class="row collectRow">
 								<div class="col-xs-6">
-									<div id="woodCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('wood')">Chop</div>
+									<div id="woodCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('wood')" data-i18n="wood.gather:multi">Chop</div>
 								</div>
 								<div class="col-xs-6">
-									<span class="psText sizeSecRegular pointer noselect" id="woodPs" onclick="getPsString('wood')">+0/sec</span>
+									<span class="psText sizeSecRegular pointer noselect" id="woodPs" onclick="getPsString('wood')" data-i18n="re.somethingPs:re">+0/sec</span>
 								</div>
 							</div>
 						</div>
@@ -214,7 +215,7 @@
 				<div class="row resourceRow">
 					<div class="col-xs-6 maxH">
 						<div id="metal" class="playerGather" style="visibility: hidden;">
-							<span class="title">Metal</span>
+							<span class="title" data-i18n="metal.title">Metal</span>
 							<br/>
 							<span class="ownedArea bdHover" onclick="getMaxResources('Metal')"><span id="metalOwned">0</span> / <span id="metalMax"></span></span>
 							<br/>
@@ -225,26 +226,26 @@
 							</div>
 							<div class="row collectRow">
 								<div class="col-xs-6">
-									<div id="metalCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('metal')">Mine</div>
+									<div id="metalCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('metal')" data-i18n="metal.gather:multi">Mine</div>
 								</div>
 								<div class="col-xs-6">
-									<span class="psText sizeSecRegular pointer noselect" id="metalPs" onclick="getPsString('metal')">+0/sec</span>
+									<span class="psText sizeSecRegular pointer noselect" id="metalPs" onclick="getPsString('metal')" data-i18n="re.somethingPs:re">+0/sec</span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-xs-6 maxH">
 						<div id="science" class="playerGather" style="visibility: hidden;">
-							<span class="title">Science</span>
+							<span class="title" data-i18n="science.title">Science</span>
 							<br/>
 							<span class="ownedArea"><span id="scienceOwned">0</span></span>
 							<br/>
 							<div class="row collectRow">
 								<div class="col-xs-6">
-									<div id="scienceCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('science')">Research</div>
+									<div id="scienceCollectBtn" class="workBtn workColorOff pointer noselect" onclick="setGather('science')" data-i18n="science.gather:multi">Research</div>
 								</div>
 								<div class="col-xs-6">
-									<span class="psText sizeSecRegular pointer noselect" id="sciencePs" onclick="getPsString('science')">+0/sec</span>
+									<span class="psText sizeSecRegular pointer noselect" id="sciencePs" onclick="getPsString('science')" data-i18n="re.somethingPs:re">+0/sec</span>
 								</div>
 							</div>
 						</div>
@@ -366,7 +367,7 @@
 				<div id="queueContainer">
 					<div class="row" id="queueRow">
 						<div class="col-xs-4 lowPad">
-							<span id="foremenCount"></span>
+							<span id="foremenCount" data-i18n="queue.foremenCount:re"></span>
 						</div>
 						<div class="col-xs-2 lowPad">
 							<span id="buildSpeed"></span>
@@ -375,23 +376,23 @@
 							<div id="autoTrapBtn" style="display: none" onclick="toggleAutoTrap()" class="pointer noselect colorDanger autoUpgradeBtn">AutoTraps Off</div>
 						</div>
 						<div class="col-xs-3">
-							<div id="buildingsCollectBtn" onclick="setGather('buildings')" class="workBtn workColorOff pointer noselect">Build</div>
+							<div id="buildingsCollectBtn" onclick="setGather('buildings')" class="workBtn workColorOff pointer noselect" data-i18n="queue.build:multi">Build</div>
 						</div>
 					</div>
 					<div class="queue niceScroll" id="buildingsQueue">
-						<span id='noQueue'>Nothing in queue...</span><div id="queueItemsHere"></div>
+						<span id='noQueue' data-i18n="queue.noQueue">Nothing in queue...</span><div id="queueItemsHere"></div>
 					</div>
 				</div>
 				<div id="outerBuyContainer">	
 				<div id="buyTabs">
 					<ul id="buyTabsUl" class="nav nav-tabs nav-justified buyTabsUl">
-						<li role="presentation" id="allTab" onclick="filterTabs('all')" class="tabNotSelected buyTab"><a id="allA">All</a></li>
-						<li role="presentation" id="buildingsTab" onclick="filterTabs('buildings')" class="tabNotSelected buyTab"><a id="buildingsA"><span id="buildingsAlert" class="alert badge"></span>Buildings</a></li>
-						<li role="presentation" id="jobsTab" style="visibility: hidden" onclick="filterTabs('jobs')" class="tabNotSelected buyTab"><a id="jobsA"><span id="jobsAlert" class="alert badge"></span>Jobs</a></li>
-						<li role="presentation" id="upgradesTab" style="visibility: hidden" onclick="filterTabs('upgrades')" class="tabNotSelected buyTab"><a id="upgradesA"><span id="upgradesAlert" class="alert badge"></span>Upgrades</a></li>
-						<li role="presentation" id="equipmentTab" style="visibility: hidden" onclick="filterTabs('equipment')" class="tabNotSelected buyTab"><a id="equipmentA"><span id="equipmentAlert" class="alert badge"></span>Equipment</a></li>		
+						<li role="presentation" id="allTab" onclick="filterTabs('all')" class="tabNotSelected buyTab"><a id="allA" data-i18n="buy.all">All</a></li>
+						<li role="presentation" id="buildingsTab" onclick="filterTabs('buildings')" class="tabNotSelected buyTab"><a id="buildingsA" data-i18n="buy.buildings"><span id="buildingsAlert" class="alert badge"></span>Buildings</a></li>
+						<li role="presentation" id="jobsTab" style="visibility: hidden" onclick="filterTabs('jobs')" class="tabNotSelected buyTab"><a id="jobsA" data-i18n="buy.jobs"><span id="jobsAlert" class="alert badge"></span>Jobs</a></li>
+						<li role="presentation" id="upgradesTab" style="visibility: hidden" onclick="filterTabs('upgrades')" class="tabNotSelected buyTab"><a id="upgradesA" data-i18n="buy.upgrades"><span id="upgradesAlert" class="alert badge"></span>Upgrades</a></li>
+						<li role="presentation" id="equipmentTab" style="visibility: hidden" onclick="filterTabs('equipment')" class="tabNotSelected buyTab"><a id="equipmentA" data-i18n="buy.equipment"><span id="equipmentAlert" class="alert badge"></span>Equipment</a></li>
 					</ul>
-					<ul id="buyTabsUl2" class="nav nav-tabs nav-justified buyTabsUl">
+					<ul id="buysUl2" class="nav nav-tabs nav-justified buyTabsUl">
 						<li role="presentation" id="talentsTab" style='display: none' onclick="filterTabs('talents')" class="tabNotSelected buyTab" onmouseover="tooltip('Mastery', null, event)" onmouseout="tooltip('hide')"><a id="talentA"><span id="talentsAlert" class="alert badge"></span><span id="mutatorsAlert" class="alert badge"></span><span id='MasteryTabName'>Mastery</span><span id="talentsEssenceTotal"></span></a></li>		
 						<li role="presentation" id="equalityTab" style='display: none'  onclick="tooltip('Scale Equality Scaling', null, 'update', true)" class="tabNotSelected equalityTabScaling buyTab" onmouseover="tooltip('Equality Scaling', null, event, true)" onmouseout="tooltip('hide')"><a id="equalityA">Equality</a></li>		
 						<li role="presentation" id="natureTab" style='display: none'  onclick="filterTabs('nature')" class="tabNotSelected buyTab empowerTabNone" onmouseover="tooltip('Empowerments of Nature', null, event)" onmouseout="tooltip('hide')"><a id="natureA">Nature</a></li>		
@@ -417,10 +418,10 @@
 							</li>
 							<li role="presentation" class="tabNotSelected" id="tab5">
 								<a id="tab5Text" onclick="numTab(5)">+1</a>
-								<a id="tab5Text2" onclick="tooltip('Custom', null, 'update')">Custom</a>
+								<a id="tab5Text2" onclick="tooltip('Custom', null, 'update')" data-i18n="buy.custom">Custom</a>
 							</li>
 							<li role="presentation" class="tabNotSelected" id="tab6" onclick="numTab(6)" onmouseover="tooltip('Buy Max', 'customText', event, 'Switching to this option will spend the majority of your resources with each purchase. <b>Click twice to customize.</b>')" onmouseout="tooltip('hide')" >
-								<a id="tab6Text">Max</a>
+								<a id="tab6Text" data-i18n="buy.max">Max</a>
 							</li>
 						</ul>
 					</div>
@@ -433,7 +434,7 @@
 								<div id="buildingsTitleDiv" class="titleDiv">
 									<div class="row">
 										<div class="col-xs-3" style="padding-right: 5px">
-											<span id="buildingsTitleSpan" class="titleSpan">Buildings</span>
+											<span id="buildingsTitleSpan" class="titleSpan" data-i18n="buy.buildings">Buildings</span>
 										</div>
 										<div class="col-xs-3 lowPad">&nbsp;</div>
 										<div class="col-xs-3 lowPad">
@@ -454,7 +455,7 @@
 								<div id="jobsTitleDiv" class="titleDiv" style="display: none">
 									<div class="row">
 										<div class="col-xs-3" style="padding-right: 5px">
-											<span id="jobsTitleSpan" class="titleSpan">Jobs</span>
+											<span id="jobsTitleSpan" class="titleSpan" data-i18n="buy.jobs">Jobs</span>
 										</div>
 										<div class="col-xs-3 lowPad">
 											<span id="jobsTitleUnemployed" class="titleSpan"></span>
@@ -466,7 +467,7 @@
 											</div>
 										</div>
 										<div class="col-xs-3" style="padding-left: 5px">
-											<div id="fireBtn" class="pointer noselect fireBtnNotFiring" onclick="fireMode()" onmouseover="tooltip('Fire Trimps',null,event)" onmouseout="tooltip('hide')">Fire</div>
+											<div id="fireBtn" class="pointer noselect fireBtnNotFiring" onclick="fireMode()" onmouseover="tooltip('Fire Trimps',null,event)" onmouseout="tooltip('hide')" data-i18n="buy.fire">Fire</div>
 										</div>
 									</div>
 								</div>
@@ -477,7 +478,7 @@
 								<div id="upgradesTitleDiv" style="display: none" class="titleDiv">
 									<div class="row">
 										<div class="col-xs-3" style="padding-right: 5px">
-											<span id="upgradesTitleSpan" class="titleSpan">Upgrades<br/>(Research first)</span>
+											<span id="upgradesTitleSpan" class="titleSpan" data-i18n="buy.upgrades.title:multi">Upgrades<br/>(Research first)</span>
 										</div>
 										<div class="col-xs-3 lowPad">								
 											<div id="autoGoldenBtn" onmouseover="tooltip('AutoGold', null, event)" onmouseout="tooltip('hide')" class="pointer noselect settingBtn0 autoUpgradeBtn">
@@ -499,7 +500,7 @@
 								<div id="equipmentTitleDiv" style="display: none" class="titleDiv">
 									<div class="row">
 										<div class="col-xs-3">
-											<span id="equipmentTitleSpan" class="titleSpan">Equipment</span>
+											<span id="equipmentTitleSpan" class="titleSpan" data-i18n="buy.equipment">Equipment</span>
 										</div>
 										<div class="col-xs-3 lowPad">&nbsp;</div>
 										<div class="col-xs-3 lowPad">&nbsp;</div>
@@ -1001,7 +1002,7 @@
 		<div id="settingsRow">
 			<table id="settingsTable">
 				<tr>
-					<td class="btn btn-info" onclick="save(false, true)">
+					<td class="btn btn-info" onclick="save(false, true)" data-i18n="options.save">
 						Save <span id="saveIndicator"></span><span id="playFabIndicator"></span>
 					</td>
 					<td class="btn btn-info" onclick="tooltip('Export', null, 'update')">
@@ -1384,6 +1385,17 @@
 			&nbsp;
 		</div>
 	</div>
+	<script type="text/javascript">
+		const item = document.getElementById("buildingsTitleSpan")
+		const item_ob = new MutationObserver(function (mutations) {
+			console.log('item_changed!',mutations)
+		});
+		item_ob.observe(item, {
+			attributes: false,
+			characterData: true,
+			childList: true,
+		})
+	</script>
 	<script type="text/javascript" src="Playfab/PlayFabSDK/PlayFabClientApi.js"></script>
 	<script type="text/javascript" src="lz-string.js"></script>
 	<script type="text/javascript" src="decimal.min.js"></script>

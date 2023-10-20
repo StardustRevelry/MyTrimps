@@ -379,6 +379,11 @@ function load(saveString, autoLoad, fromPf) {
 					if (mazSave.U1Mode) mazGame.U1Mode = mazSave.U1Mode;
 					if (mazSave.U2Mode) mazGame.U2Mode = mazSave.U2Mode;
 				}
+				if (itemO == "i18n"){
+					// 更新翻译
+					// console.log(savegame.options.menu.i18n.enabled);
+					handleLangChange(savegame.options.menu.i18n.enabled);
+        }
 			}
 			if (typeof savegame.options.menu.GeneticistassistTarget !== 'undefined' && savegame.options.menu.GeneticistassistTarget.disableOnUnlock) game.options.menu.GeneticistassistTarget.disableOnUnlock = true;
 			if (savegame.options.menu.pauseGame && savegame.options.menu.pauseGame.timeAtPause) game.options.menu.pauseGame.timeAtPause = savegame.options.menu.pauseGame.timeAtPause;

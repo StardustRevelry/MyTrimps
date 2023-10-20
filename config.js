@@ -1824,6 +1824,15 @@ var toReturn = {
 					return (holidayObj.checkActive("Pumpkimp"));
 				}
 			},
+			i18n: {
+				enabled: 1,
+				extraTags: "popular general",
+        description: "setting language",
+        titles: ["语言：中文", "Language: English"],
+        onToggle: function () {
+					handleLangChange(this.enabled);
+				},
+			},
 			geneSend: {
 				enabled: 0,
 				locked: true,

@@ -254,21 +254,21 @@
 			</div>
 			<div class="col-xs-1" id="miscColumn">
 				<div id="fragments" class="playerGather playerGatherSm" style="visibility: hidden;">
-					<span class="title">Fragments</span>
+					<span class="title" data-i18n="fragments">Fragments</span>
 					<br/>
 					<span class="ownedArea"><span id="fragmentsOwned">0</span></span>
 					<br/>
 					<span class="psText sizeSecRegular pointer noselect" id="fragmentsPs" style="display: none" onclick="getPsString('fragments')">+0/sec</span>
 				</div>
 				<div id="gems" class="playerGather playerGatherSm" style="visibility: hidden;">
-					<span class="title">Gems</span>
+					<span class="title" data-i18n="gems">Gems</span>
 					<br/>
 					<span class="ownedArea"><span id="gemsOwned">0</span></span>
 					<br/>
 					<span class="psText sizeSecRegular pointer noselect" id="gemsPs" style="display: none" onclick="getPsString('gems')">+0/sec</span>
 				</div>
 				<div id="helium" class="playerGather playerGatherSm" style="display: none">
-					<span id="heliumName" class="title">Helium</span>
+					<span id="heliumName" class="title" data-i18n="helium">Helium</span>
 					<br/>
 					<span class="ownedArea"><span id="heliumOwned">0</span></span>
 					<br/>
@@ -286,7 +286,7 @@
 						</div>
 						<div class="col-xs-6">
 							<div class="maxCenter">
-								<span id="trimpTitle" class="title">???</span>													
+								<span id="trimpTitle" class="title" data-i18n="trimps.title">???</span>
 							</div>
 						</div>
 						<div class="col-xs-3" style="padding-left: 0">
@@ -302,16 +302,16 @@
 						
 					</div>
 					<div id="unempHide" style="visibility: hidden">
-						<span id="trimpsUnemployed">0</span>&nbsp;<span id='trimpsBreedingTitle'>breeding</span>
-						<br/><span id="trimpsPs" class="pointer sizeSecRegular noselect bdHover psColorWhite" onclick="getTrimpPs()">+0/sec</span>
+						<span id="trimpsUnemployed">0</span>&nbsp;<span id='trimpsBreedingTitle' data-i18n="trimps.breeding">breeding</span>
+						<br/><span id="trimpsPs" class="pointer sizeSecRegular noselect bdHover psColorWhite" onclick="getTrimpPs()" data-i18n="re.somethingPs:re">+0/sec</span>
 						<br/>
 					</div>
-					<div id="empHide" style="visibility: hidden">
+					<div id="empHide" style="visibility: hidden" data-i18n="trimps.employ">
 						<span id="trimpsEmployed">0</span>/<span id="maxEmployed">0</span> employed
 					</div>
 					<div id="trapArea">
-						<div id="trimpsCollectBtn" class="workBtn workColorOff pointer noSelect" onclick="setGather('trimps')">Check&nbsp;Traps&nbsp;(<span id="trimpTrapText">1</span>)</div>
-						<div id="trimpsCollecting" class="collecting" style="display: none">Trapping (<span id="trimpTrapText2">1</span>)</div>
+						<div id="trimpsCollectBtn" class="workBtn workColorOff pointer noSelect" onclick="setGather('trimps')" data-i18n="trimps.traps:multi">Check&nbsp;Traps&nbsp;(<span id="trimpTrapText">1</span>)</div>
+						<div id="trimpsCollecting" class="collecting" style="display: none" data-i18n="trimps.trapping">Trapping (<span id="trimpTrapText2">1</span>)</div>
 						<div class="progress" id="trappingProgress">
 							<div class="progress-bar" id="trappingBar" role="progressbar"></div>
 						</div>
@@ -373,7 +373,7 @@
 							<span id="buildSpeed"></span>
 						</div>
 						<div class="col-xs-3 lowPad">
-							<div id="autoTrapBtn" style="display: none" onclick="toggleAutoTrap()" class="pointer noselect colorDanger autoUpgradeBtn">AutoTraps Off</div>
+							<div id="autoTrapBtn" style="display: none" onclick="toggleAutoTrap()" class="pointer noselect colorDanger autoUpgradeBtn" data-i18n="queue.autoTrap:multi">AutoTraps Off</div>
 						</div>
 						<div class="col-xs-3">
 							<div id="buildingsCollectBtn" onclick="setGather('buildings')" class="workBtn workColorOff pointer noselect" data-i18n="queue.build:multi">Build</div>
@@ -458,7 +458,7 @@
 											<span id="jobsTitleSpan" class="titleSpan" data-i18n="buy.jobs">Jobs</span>
 										</div>
 										<div class="col-xs-3 lowPad">
-											<span id="jobsTitleUnemployed" class="titleSpan"></span>
+											<span id="jobsTitleUnemployed" class="titleSpan" data-i18n="buy.unemployed:re"></span>
 										</div>
 										<div class="col-xs-3 lowPad">
 											<div id="autoJobsBtn" onmouseover='tooltip("AutoJobs", null, event)' onmouseout='tooltip("hide")' class="toggleConfigBtn pointer noselect colorDanger autoUpgradeBtn">
@@ -467,7 +467,7 @@
 											</div>
 										</div>
 										<div class="col-xs-3" style="padding-left: 5px">
-											<div id="fireBtn" class="pointer noselect fireBtnNotFiring" onclick="fireMode()" onmouseover="tooltip('Fire Trimps',null,event)" onmouseout="tooltip('hide')" data-i18n="buy.fire">Fire</div>
+											<div id="fireBtn" class="pointer noselect fireBtnNotFiring" onclick="fireMode()" onmouseover="tooltip('Fire Trimps',null,event)" onmouseout="tooltip('hide')" data-i18n="buy.fire:multi">Fire</div>
 										</div>
 									</div>
 								</div>
@@ -1385,17 +1385,6 @@
 			&nbsp;
 		</div>
 	</div>
-	<script type="text/javascript">
-		const item = document.getElementById("buildingsTitleSpan")
-		const item_ob = new MutationObserver(function (mutations) {
-			console.log('item_changed!',mutations)
-		});
-		item_ob.observe(item, {
-			attributes: false,
-			characterData: true,
-			childList: true,
-		})
-	</script>
 	<script type="text/javascript" src="Playfab/PlayFabSDK/PlayFabClientApi.js"></script>
 	<script type="text/javascript" src="lz-string.js"></script>
 	<script type="text/javascript" src="decimal.min.js"></script>

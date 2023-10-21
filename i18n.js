@@ -38,10 +38,14 @@ function translate() {
         // 如果当前元素有data-i18n属性, 则根据data-i18n属性的值替换当前元素的文本内容
         const i18n_key = element.getAttribute("data-i18n");
         // 获取内容的键和替换方法
-        const [key, method] = i18n_key.split(':');
+        let [key, method] = i18n_key.split(':');
         let ob; // Mutation observer
 
-        if (!i18n_data.hasOwnProperty(key)) continue; // 忽略没有翻译的文本
+        if (!i18n_data.hasOwnProperty(key) || i18n_data[key] === "") continue; // 忽略没有翻译的文本
+        if (!(i18n_data[key] instanceof Array)&&(i18n_data[key] instanceof Object)){
+          // 非数组对象，自动判定为multi类型
+          method = 'multi';
+        }
 
         /**如果翻译文件中有对应的值，则替换当前元素的文本内容
          * 替换方法:
@@ -51,7 +55,9 @@ function translate() {
          */
         if (method ==='multi') {
           // console.log(key)
-          element.textContent = i18n_data[key][element.textContent];
+          // element.textContent = i18n_data[key][element.textContent];
+          translateNode(element, i18n_data?.[key]?.[element.firstChild.textContent]);
+          console.log(element.textContent)
           // 如果已经初始化了，就不需要监听了
           if (i18n_inited) continue;
           ob = new MutationObserver(function (mutations) {
@@ -59,9 +65,13 @@ function translate() {
             const node = mutations[0].addedNodes[0];
             const newText = node?.textContent;
             const key = node.parentNode?.getAttribute("data-i18n").split(":")[0];
+            console.log(newText, key)
+            console.log(i18n_data?.[key], i18n_data?.[key]?.[newText])
+            if (!i18n_data?.[key]?.[newText]) return
             // 若翻译不为空则使用翻译文本，否则不替换
-            node.textContent = i18n_data?.[key]?.[newText] === '' || i18n_data[key]?.[newText] === undefined ?
-              node.textContent : i18n_data?.[key]?.[newText];
+            // node.textContent = i18n_data?.[key]?.[newText] === '' || i18n_data[key]?.[newText] === undefined ?
+            //   node.textContent : i18n_data?.[key]?.[newText];
+            translateNode(node.parentNode, i18n_data?.[key]?.[newText]);
           });
           ob.observe(element, {
             attributes: false,
@@ -89,21 +99,7 @@ function translate() {
           })
         }
         else if (method === undefined) {
-          if (element.childNodes.length === 1) {
-            element.textContent = i18n_data[key] === '' || i18n_data[key] === undefined ? element.textContent : i18n_data[key];
-          }
-          else {
-            const i18n_texts = i18n_data[key] instanceof Array ? i18n_data[key] : [i18n_data[key]];
-            let text_index = 0;
-            for (const item in element.childNodes){
-              // 判断是否是文本节点
-              if (element.childNodes[item].nodeType === 3){
-                element.childNodes[item].replaceWith(i18n_texts[text_index]);
-                text_index ++;
-                if (text_index>=i18n_texts.length) break
-              }
-            }
-          }
+          translateNode(element, i18n_data[key])
         }
       }
       // 初始化成功
@@ -113,6 +109,30 @@ function translate() {
       // 如果请求失败，打印错误信息
       console.error(error);
     });
+}
+
+function translateNode(node, texts) {
+  if (texts === undefined) {
+    return
+  }
+  else if (typeof texts === 'string') {
+    texts = [texts]
+  }
+
+  if (node.childNodes.length === 1) {
+    node.textContent = texts[0];
+  }
+  else {
+    let text_index = 0;
+    for (const item in node.childNodes){
+      // 判断是否是文本节点
+      if (node.childNodes[item].nodeType === 3){
+        node.childNodes[item].replaceWith(texts[text_index]);
+        text_index ++;
+        if (text_index>=texts.length) break
+      }
+    }
+  }
 }
 
 // 切换语言
